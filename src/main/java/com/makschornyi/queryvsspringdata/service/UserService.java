@@ -36,4 +36,21 @@ public class UserService {
     public void deleteById(Long id) {
         userRepo.deleteById(id);
     }
+
+    public Long initUsers(Long count) {
+        for (int i = 0; i < count; i++) {
+            User u = new User();
+            u.setName("Maks");
+            userRepo.save(u);
+        }
+        return userRepo.count();
+    }
+
+    public List<User> findAllBySpringJPA(String name) {
+        return userRepo.findAllByNameContains(name);
+    }
+
+    public List<User> findAllNativeQuery(String name) {
+        return userRepo.findAllWeNeed(name);
+    }
 }
